@@ -1,0 +1,56 @@
+#define     l1        11
+#define     l2        10
+#define     r1         9
+#define     r2         6
+
+Void setup()
+{
+Serial.begin(9600);
+
+pinMode(l1, OUTPUT);   
+pinMode(l2, OUTPUT);   
+pinMode(r1, OUTPUT);   
+pinMode(r2, OUTPUT);   
+}
+
+Void loop()
+{
+If (serial.available()>0)
+   {
+     int a = serial.read();
+     if(a== '1' )
+     {
+        analogwrite(l1, 255);        // Forward the Motor
+        analogwrite(l2, 0);
+        analogwrite(r1, 255);
+        analogwrite(r2, 0);
+      }
+     else if( a== '2' )
+      {
+        analogwrite(l1, 0);
+        analogwrite(l2, 255);          // Reverse the Motor
+        analogwrite(r1, 0);
+        analogwrite(r2, 255);
+     }
+    else if( a== ' 3' )
+     {
+       analogwrite(l1, 0);
+       analogwrite(l2, 0);
+       analogwrite(r1, 255);       // Left  Turn
+       analogwrite(r2, 0);
+    }
+   else if (a== '4' )
+    {
+      analogwrite(l1, 255);
+      analogwrite(l2, 0);
+      analogwrite(r1, 0);             // Right Turn
+      analogwrite(r2, 0);
+   }
+   else if( a== '5' )
+   {
+     analogwrite(l1, 0);
+     analogwrite(l2, 0);
+     analogwrite(r1, 0);            // To Stop Motor OR Car
+     analogwrite(r2, 0);
+ }
+}
